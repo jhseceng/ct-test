@@ -1,0 +1,44 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+      {
+          "Effect": "Allow",
+          "Action": [
+              "secretsmanager:GetSecretValue",
+              "kms:Decrypt",
+              "eks:DescribeCluster",
+              "s3:GetObject",
+              "sts:AssumeRole",
+              "sts:GetCallerIdentity",
+              "iam:PassRole",
+              "ec2:CreateNetworkInterface",
+              "ec2:DescribeNetworkInterfaces",
+              "ec2:DeleteNetworkInterface",
+              "ec2:DescribeVpcs",
+              "ec2:DescribeSubnets",
+              "ec2:DescribeRouteTables",
+              "ec2:DescribeSecurityGroups",
+              "logs:CreateLogGroup",
+              "logs:CreateLogStream",
+              "logs:PutLogEvents",
+              "lambda:UpdateFunctionConfiguration",
+              "lambda:DeleteFunction",
+              "lambda:GetFunction",
+              "lambda:InvokeFunction",
+              "lambda:CreateFunction",
+              "lambda:UpdateFunctionCode",
+              "logs:CreateLogGroup",
+              "logs:CreateLogStream",
+              "logs:DescribeLogGroups",
+              "logs:DescribeLogStreams",
+              "logs:PutLogEvents",
+              "cloudwatch:ListMetrics",
+              "cloudwatch:PutMetricData",
+              "ssm:PutParameter",
+              "ssm:GetParameter",
+              "ssm:DeleteParameter"
+          ],
+          "Resource": "*"
+      }
+  ]
+}
