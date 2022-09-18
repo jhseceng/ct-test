@@ -1,4 +1,4 @@
 Note to app team.  
 
 We are longer using credentials as we have added an IAM profile for S3.   
-Remove any references to credentials in you application.
+Remove any references to credentials in the application.
