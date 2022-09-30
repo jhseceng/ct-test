@@ -4,6 +4,7 @@ LHOST=$(curl http://169.254.169.254/latest/meta-data/public-ipv4);
 PRIVATE_IPADDRESS=$(curl http://169.254.169.254/latest/meta-data/local-ipv4);
 TARGET_PORT='80';
 LPORT='443';
+TARGET_ADDRESS=$(aws elbv2 describe-load-balancers --query LoadBalancers[].DNSName --output text --region us-west-2)
 
 startup ()
 {
@@ -42,7 +43,6 @@ EOL
 	sudo cat >/home/kali/post_exploit.rc <<'EOL'
 whoami
 netstat -ano
-bash crowdstrike_test_high
 EOL
 	sudo chown kali:kali /home/kali/*.rc
 }
@@ -82,22 +82,22 @@ function run_attack_auto() {
 PROMPT=$'%F{%(#.white.red)}${debian_chroot:+($debian_chroot)──}(%B%F{%(#.yellow.white)}%n@%m%b%F{%(#.white.red)})-[%B%F{reset}%(6~.%-1~/…/%4~.%5~)%b%F{%(#.white.red)}]%B%(#.%F{yellow}#.%F{white}$)%b%F{reset} '
 EOL
 	#sudo chown kali:kali /home/kali/.zshrc
-}
 
 
 
-for arg in "$@"
-do
-    if [[ "$arg" == *--target_address=* ]]
-    then
-        TARGET_ADDRESS=${arg/--target_address=/}
-    fi
-done
-
-if [ -z "${TARGET_ADDRESS}" ]
-then
-    read -r -p "ALB DNS Address: " TARGET_ADDRESS
-fi
-echo "${TARGET_ADDRESS}"
+#
+#for arg in "$@"
+#do
+#    if [[ "$arg" == *--target_address=* ]]
+#    then
+#        TARGET_ADDRESS=${arg/--target_address=/}
+#    fi
+#done
+#
+#if [ -z "${TARGET_ADDRESS}" ]
+#then
+#    read -r -p "ALB DNS Address: " TARGET_ADDRESS
+#fi
+#echo "${TARGET_ADDRESS}"
 
 startup;
