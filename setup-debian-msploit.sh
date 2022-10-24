@@ -7,15 +7,22 @@ exec 1>/tmp/setup-debian-msploit.out 2>&1
 startup ()
 {
 	install_packages;
+	install_metasploit;
 	stage_apache;
 	change_hostname;
 	exit;
 }
 
+#!/bin/bash
+install_metasploit ()
+{
+  curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall && chmod 755 msfinstall && ./msfinstall
+}
+
 install_packages ()
 {
 	sudo apt-get -yqq update;
-	sudo apt-get -yqq install jq net-tools apache2;
+	sudo apt-get -yqq install jq net-tools apache2 curl gnupg2 nmap;
 	cd /tmp/ssm
   wget https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/debian_amd64/amazon-ssm-agent.deb
   dpkg -i amazon-ssm-agent.deb
