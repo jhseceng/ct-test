@@ -17,8 +17,8 @@ startup ()
 #!/bin/bash
 install_metasploit ()
 {
-  curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall && chmod 755 msfinstall && ./msfinstall
-  touch  /home/admin/.msf4/initial_setup_complete
+  	curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall && chmod 755 msfinstall && ./msfinstall
+  	touch  /home/admin/.msf4/initial_setup_complete
 }
 
 
