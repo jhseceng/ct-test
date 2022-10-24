@@ -1,5 +1,6 @@
 #!/bin/bash
 #myInvocation="$(printf %q "$BASH_SOURCE")$((($#)) && printf ' %q' "$@")"
+
 SUFFIX='-kali';
 exec 3>&1 4>&2
 trap 'exec 2>&4 1>&3' 0 1 2 3
@@ -24,9 +25,9 @@ install_packages ()
 	sudo apt-get -yqq update;
 	sudo apt-get -yqq install jq net-tools apache2 curl gnupg2 nmap;
 	cd /tmp/ssm
-  wget https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/debian_amd64/amazon-ssm-agent.deb
-  dpkg -i amazon-ssm-agent.deb
-  systemctl enable amazon-ssm-agent
+  	wget https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/debian_amd64/amazon-ssm-agent.deb
+  	dpkg -i amazon-ssm-agent.deb
+  	systemctl enable amazon-ssm-agent
 }
 
 stage_apache ()
